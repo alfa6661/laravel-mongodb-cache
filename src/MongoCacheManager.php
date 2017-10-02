@@ -20,7 +20,7 @@ class MongoCacheManager extends CacheManager
 
         return $this->repository(
             new MongoStore(
-                $connection, $this->app['encrypter'], $config['table'], $this->getPrefix($config)
+                $connection, $config['table'], $this->getPrefix($config)
             )
         );
     }

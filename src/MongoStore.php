@@ -29,7 +29,7 @@ class MongoStore extends DatabaseStore
             $cache = (object) $cache;
         }
 
-        $current = $this->encrypter->decrypt($cache->value);
+        $current = $cache->value;
         $new = $callback((int) $current, $value);
 
         if (! is_numeric($current)) {

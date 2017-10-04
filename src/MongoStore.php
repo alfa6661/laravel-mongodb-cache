@@ -29,7 +29,7 @@ class MongoStore extends DatabaseStore
             $cache = (object) $cache;
         }
 
-        $current = $this->encrypter->decrypt($cache->value);
+        $current = unserialize($cache->value);
         $new = $callback((int) $current, $value);
 
         if (! is_numeric($current)) {
@@ -37,7 +37,7 @@ class MongoStore extends DatabaseStore
         }
 
         $this->table()->where('key', $prefixed)->update([
-            'value' => $this->encrypter->encrypt($new)
+            'value' => serialize($new)
         ]);
 
         return $new;

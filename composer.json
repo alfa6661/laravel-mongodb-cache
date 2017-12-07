@@ -18,5 +18,12 @@
         "psr-4": {
             "Alfa6661\\Mongodb\\Cache\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alfa6661\\Mongodb\\Cache\\MongoCacheServiceProvider"
+            ]
+        }
     }
 }

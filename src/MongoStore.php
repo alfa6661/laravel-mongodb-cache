@@ -4,9 +4,21 @@ namespace Alfa6661\Mongodb\Cache;
 
 use Closure;
 use Illuminate\Cache\DatabaseStore;
+use Illuminate\Cache\TaggedCache;
+use Illuminate\Cache\TagSet;
 
 class MongoStore extends DatabaseStore
 {
+    /**
+     * Begin executing a new tags operation.
+     *
+     * @param  array|mixed  $names
+     * @return \Illuminate\Cache\TaggedCache
+     */
+    public function tags($names)
+    {
+        return new TaggedCache($this, new TagSet($this, is_array($names) ? $names : func_get_args()));
+    }
 
     /**
      * Increment or decrement an item in the cache.
